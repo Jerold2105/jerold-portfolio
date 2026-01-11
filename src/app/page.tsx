@@ -1,66 +1,230 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+const LINKS = {
+  github: "https://github.com/Jerold2105",
+  linkedin: "https://www.linkedin.com/in/jerold-anbarasan/",
+  email: "mailto:jeroldanbarasan@gmail.com",
+  resume: "/resume.pdf",
+};
 
-export default function Home() {
+type Project = {
+  name: string;
+  oneLiner: string;
+  whatItDoes: string[];
+  stack: string[];
+  ethics: string[];
+  links: { demo?: string; repo?: string };
+};
+
+const projects: Project[] = [
+  {
+    name: "WebSentry AI",
+    oneLiner: "AI-assisted web application security reviewer (permission-only, non-destructive).",
+    whatItDoes: [
+      "Guided security review workflow focused on common web weaknesses",
+      "Produces prioritized, human-readable findings with mitigation guidance",
+      "Optional LLM support behind a feature-flag for safe, controlled usage",
+    ],
+    stack: ["Python", "Playwright", "CLI", "HTML/JSON Reports"],
+    ethics: [
+      "Permission-only testing with clear scope limits",
+      "Lightweight checks (no brute force / no destructive actions)",
+      "Transparent scope: analysis tool, not a vulnerability scanner",
+    ],
+    links: {
+      repo: "https://github.com/Jerold2105/websentry-ai", // change if needed
+    },
+  },
+  {
+    name: "PQC-Sim",
+    oneLiner: "Post-quantum cryptography KEM benchmarking dashboard with exportable results.",
+    whatItDoes: [
+      "Runs local KEM benchmarks and compares performance across algorithms",
+      "Displays results and exports JSON for analysis",
+      "Built end-to-end as a portfolio-grade security + crypto project",
+    ],
+    stack: ["Python", "liboqs", "Benchmarking", "Dashboard", "JSON Export"],
+    ethics: [
+      "Benchmarks computed locally (no private crypto workloads sent to a server)",
+      "Designed for education + performance comparison use cases",
+    ],
+    links: {
+      demo: "https://pqc-sim.onrender.com/",
+      repo: "https://github.com/Jerold2105/pqc-sim",
+    },
+  },
+];
+
+function Nav() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="nav">
+      <div className="navInner">
+        <div className="brand">
+          <span>Jerold Anbarasan</span>
+          <span className="pill">Cybersecurity • AI • AppSec</span>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+
+        <div className="links">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a className="btn" href={LINKS.github} target="_blank" rel="noreferrer">
+            GitHub
           </a>
         </div>
-      </main>
+      </div>
     </div>
+  );
+}
+
+function ProjectCard({ p }: { p: Project }) {
+  return (
+    <div className="card">
+      <div className="cardTitle">
+        <div>
+          <h3>{p.name}</h3>
+          <div className="muted" style={{ marginTop: 6, lineHeight: 1.6 }}>
+            {p.oneLiner}
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: 8 }}>
+          {p.links.demo ? (
+            <a className="btn btnPrimary" href={p.links.demo} target="_blank" rel="noreferrer">
+              Live Demo
+            </a>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="tagRow">
+        {p.stack.map((t) => (
+          <span key={t} className="tag">
+            {t}
+          </span>
+        ))}
+      </div>
+
+      <div className="muted" style={{ fontWeight: 700, marginTop: 8 }}>
+        What it does
+      </div>
+      <ul className="list">
+        {p.whatItDoes.map((x) => (
+          <li key={x}>{x}</li>
+        ))}
+      </ul>
+
+      <div className="muted" style={{ fontWeight: 700, marginTop: 12 }}>
+        Security & ethics
+      </div>
+      <ul className="list">
+        {p.ethics.map((x) => (
+          <li key={x}>{x}</li>
+        ))}
+      </ul>
+
+      <div className="ctaRow" style={{ marginTop: 14 }}>
+        {p.links.repo ? (
+          <a className="btn" href={p.links.repo} target="_blank" rel="noreferrer">
+            GitHub Repo →
+          </a>
+        ) : null}
+        {p.links.demo ? (
+          <a className="btn btnPrimary" href={p.links.demo} target="_blank" rel="noreferrer">
+            View Demo →
+          </a>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <>
+      <Nav />
+
+      <main className="container">
+        <section className="hero">
+          <div>
+            <h1 className="h1">
+              Building ethical security tools <br />
+              with AI + automation.
+            </h1>
+
+            <p className="sub">
+              Cybersecurity grad student focused on AppSec and practical tooling. I build projects that
+              are recruiter-readable, engineer-usable, and designed with clear ethical guardrails.
+            </p>
+
+            <div className="tagRow">
+              <span className="tag">CEH</span>
+              <span className="tag">Google Cybersecurity</span>
+              <span className="tag">Python</span>
+              <span className="tag">Playwright</span>
+              <span className="tag">LLMs</span>
+              <span className="tag">PQC</span>
+            </div>
+
+            <div className="ctaRow">
+              <a className="btn btnPrimary" href="#projects">See Projects</a>
+              <a className="btn" href={LINKS.github} target="_blank" rel="noreferrer">GitHub</a>
+              <a className="btn" href={LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+              <a className="btn" href={LINKS.resume} target="_blank" rel="noreferrer">Resume</a>
+            </div>
+          </div>
+
+          <div className="card" style={{ alignSelf: "start" }}>
+            <div className="muted" style={{ fontWeight: 700, marginBottom: 10 }}>
+              Quick highlights
+            </div>
+            <ul className="list">
+              <li>Shipped two portfolio-grade tools with demos + repos</li>
+              <li>Ethical scope boundaries + safe-by-design defaults</li>
+              <li>LLM usage behind flags + reproducible output formats</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="projects" className="section">
+          <h2>Projects</h2>
+          <p className="muted">
+            Two shipped projects — each with a clear problem statement, usable output, and honest scope.
+          </p>
+
+          <div className="cardGrid">
+            {projects.map((p) => (
+              <ProjectCard key={p.name} p={p} />
+            ))}
+          </div>
+        </section>
+
+        <section id="about" className="section">
+          <h2>About</h2>
+          <p className="muted" style={{ lineHeight: 1.8 }}>
+            I’m Jerold (Jay). I build practical security tooling that helps engineers understand risk,
+            reproduce issues, and fix them.
+          </p>
+          <ul className="list">
+            <li>Experience: Associate QA at Amazon Development Center (Jul 2022 – Jun 2023)</li>
+            <li>Focus: AppSec reviews, secure automation, post-quantum crypto</li>
+            <li>Volunteering: Red Cross Blood Donor Ambassador</li>
+          </ul>
+        </section>
+
+        <section id="contact" className="section">
+          <h2>Contact</h2>
+          <p className="muted">Want to collaborate, review my work, or discuss roles?</p>
+          <div className="ctaRow">
+            <a className="btn btnPrimary" href={LINKS.email}>Email me</a>
+            <a className="btn" href={LINKS.linkedin} target="_blank" rel="noreferrer">Message on LinkedIn</a>
+          </div>
+          <p className="muted" style={{ marginTop: 12, fontSize: 13 }}>
+            Add <code>resume.pdf</code> to <code>/public</code> so the Resume button works.
+          </p>
+        </section>
+
+        <footer className="footer">
+          © {new Date().getFullYear()} Jerold Anbarasan — Built with Next.js
+        </footer>
+      </main>
+    </>
   );
 }

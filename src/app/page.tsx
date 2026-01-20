@@ -251,9 +251,7 @@ export default function Page() {
               Message on LinkedIn
             </a>
           </div>
-          <p className="muted" style={{ marginTop: 12, fontSize: 13 }}>
-            Add <code>resume.pdf</code> to <code>/public</code> so the Resume button works.
-          </p>
+          
         </section>
 
         <footer className="footer">

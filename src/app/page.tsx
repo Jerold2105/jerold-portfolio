@@ -1,6 +1,8 @@
+// src/app/page.tsx
+
 const LINKS = {
   github: "https://github.com/Jerold2105",
-  linkedin: "https://www.linkedin.com/in/jerold-anbarasan/",
+  linkedin: "https://www.linkedin.com/in/YOUR_LINKEDIN_HERE",
   email: "mailto:jeroldanbarasan@gmail.com",
   resume: "/resume.pdf",
 };
@@ -30,7 +32,7 @@ const projects: Project[] = [
       "Transparent scope: analysis tool, not a vulnerability scanner",
     ],
     links: {
-      repo: "https://github.com/Jerold2105/websentry-ai", // change if needed
+      repo: "https://github.com/Jerold2105/websentry-ai",
     },
   },
   {
@@ -49,6 +51,25 @@ const projects: Project[] = [
     links: {
       demo: "https://pqc-sim.onrender.com/",
       repo: "https://github.com/Jerold2105/pqc-sim",
+    },
+  },
+  {
+    name: "PhishGuard – Chrome Extension",
+    oneLiner:
+      "Lightweight Chrome extension that helps users assess suspicious links and websites while browsing.",
+    whatItDoes: [
+      "Surfaces visual indicators for potentially suspicious URLs and page characteristics",
+      "Helps users pause and evaluate links before interacting with them",
+      "Designed for browsing awareness rather than automated blocking",
+    ],
+    stack: ["Chrome Extensions", "JavaScript", "Manifest V3", "Client-side logic"],
+    ethics: [
+      "Privacy-first by design: no browsing data is transmitted externally",
+      "Advisory tool only — assists decision-making, does not label sites as malicious",
+    ],
+    links: {
+      demo: "https://chromewebstore.google.com/detail/oenppgillpgkoofdgieifildfgkedbaa",
+      repo: "https://github.com/Jerold2105/phishguard-core",
     },
   },
 ];
@@ -85,6 +106,7 @@ function ProjectCard({ p }: { p: Project }) {
             {p.oneLiner}
           </div>
         </div>
+
         <div style={{ display: "flex", gap: 8 }}>
           {p.links.demo ? (
             <a className="btn btnPrimary" href={p.links.demo} target="_blank" rel="noreferrer">
@@ -161,13 +183,22 @@ export default function Page() {
               <span className="tag">Playwright</span>
               <span className="tag">LLMs</span>
               <span className="tag">PQC</span>
+              <span className="tag">Chrome Extension</span>
             </div>
 
             <div className="ctaRow">
-              <a className="btn btnPrimary" href="#projects">See Projects</a>
-              <a className="btn" href={LINKS.github} target="_blank" rel="noreferrer">GitHub</a>
-              <a className="btn" href={LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-              <a className="btn" href={LINKS.resume} target="_blank" rel="noreferrer">Resume</a>
+              <a className="btn btnPrimary" href="#projects">
+                See Projects
+              </a>
+              <a className="btn" href={LINKS.github} target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+              <a className="btn" href={LINKS.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn
+              </a>
+              <a className="btn" href={LINKS.resume} target="_blank" rel="noreferrer">
+                Resume
+              </a>
             </div>
           </div>
 
@@ -176,7 +207,7 @@ export default function Page() {
               Quick highlights
             </div>
             <ul className="list">
-              <li>Shipped two portfolio-grade tools with demos + repos</li>
+              <li>Shipped three portfolio-grade projects (tools + browser extension)</li>
               <li>Ethical scope boundaries + safe-by-design defaults</li>
               <li>LLM usage behind flags + reproducible output formats</li>
             </ul>
@@ -186,7 +217,7 @@ export default function Page() {
         <section id="projects" className="section">
           <h2>Projects</h2>
           <p className="muted">
-            Two shipped projects — each with a clear problem statement, usable output, and honest scope.
+            Shipped projects — each with a clear problem statement, usable output, and honest scope.
           </p>
 
           <div className="cardGrid">
@@ -205,16 +236,20 @@ export default function Page() {
           <ul className="list">
             <li>Experience: Associate QA at Amazon Development Center (Jul 2022 – Jun 2023)</li>
             <li>Focus: AppSec reviews, secure automation, post-quantum crypto</li>
-            <li>Volunteering: Red Cross Blood Donor Ambassador</li>
-          </ul>
+          
+         </ul>
         </section>
 
         <section id="contact" className="section">
           <h2>Contact</h2>
           <p className="muted">Want to collaborate, review my work, or discuss roles?</p>
           <div className="ctaRow">
-            <a className="btn btnPrimary" href={LINKS.email}>Email me</a>
-            <a className="btn" href={LINKS.linkedin} target="_blank" rel="noreferrer">Message on LinkedIn</a>
+            <a className="btn btnPrimary" href={LINKS.email}>
+              Email me
+            </a>
+            <a className="btn" href={LINKS.linkedin} target="_blank" rel="noreferrer">
+              Message on LinkedIn
+            </a>
           </div>
           <p className="muted" style={{ marginTop: 12, fontSize: 13 }}>
             Add <code>resume.pdf</code> to <code>/public</code> so the Resume button works.

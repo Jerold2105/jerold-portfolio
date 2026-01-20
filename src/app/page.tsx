@@ -230,12 +230,12 @@ export default function Page() {
         <section id="about" className="section">
           <h2>About</h2>
           <p className="muted" style={{ lineHeight: 1.8 }}>
-            I’m Jerold (Jay). I build practical security tooling that helps engineers understand risk,
-            reproduce issues, and fix them.
+            I’m Jerold (Jay), an M.S. Cybersecurity graduate student with an emphasis in Artificial Intelligence. I build practical, ethical security tooling that uses AI and automation to help engineers understand risk, reproduce issues reliably, and implement fixes that meaningfully reduce attack surface.I previously worked as an Associate QA at Amazon Development Center, where I gained experience working with production systems and test automation. My current focus areas include application security reviews, AI-assisted security tooling, secure automation, browser-based security extensions, and post-quantum cryptography.
           </p>
           <ul className="list">
-            <li>Experience: Associate QA at Amazon Development Center (Jul 2022 – Jun 2023)</li>
-            <li>Focus: AppSec reviews, secure automation, post-quantum crypto</li>
+            <li>Experience: Associate QA, Amazon Development Center (Jul 2022 – Jun 2023)</li>
+            <li>Education: M.S. Cybersecurity (AI emphasis)</li>
+             <li>Focus: AppSec, AI-assisted security tooling, secure automation, post-quantum crypto</li>
           
          </ul>
         </section>

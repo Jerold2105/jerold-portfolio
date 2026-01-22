@@ -4,7 +4,7 @@ const LINKS = {
   github: "https://github.com/Jerold2105",
   linkedin: "https://www.linkedin.com/in/jerold-anbarasan/",
   email: "mailto:jeroldanbarasan@gmail.com",
-  resume: "/resume.pdf",
+  resume: "/Jerold_Anbarasan_Resume",
 };
 
 type Project = {
